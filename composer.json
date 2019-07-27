@@ -1,0 +1,25 @@
+{
+  "name": "hughcube/phpunit-vm",
+  "description": "phpunit vm",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "hugh.li",
+      "email": "hugh.li@foxmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "phpunit/phpunit": "^6"
+  },
+  "autoload": {
+    "psr-4": {
+      "HughCube\\PHPUnit\\VM\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "HughCube\\PHPUnit\\VM\\Tests\\": "tests"
+    }
+  }
+}
