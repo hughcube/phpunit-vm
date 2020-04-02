@@ -8,8 +8,8 @@
     <a href="https://github.com/hughcube/phpunit-vm/actions?query=workflow%3ALint">
         <img src="https://github.com/hughcube/phpunit-vm/workflows/Lint/badge.svg" alt="Lint Actions status">
     </a>
-    <a href="https://styleci.io/repos/250978394">
-        <img src="https://github.styleci.io/repos/250978394/shield?branch=master" alt="StyleCI">
+    <a href="https://styleci.io/repos/199132720">
+        <img src="https://github.styleci.io/repos/199132720/shield?branch=master" alt="StyleCI">
     </a>
     <a href="https://scrutinizer-ci.com/g/hughcube/phpunit-vm/?branch=master">
         <img src="https://scrutinizer-ci.com/g/hughcube/phpunit-vm/badges/coverage.png?b=master" alt="Code Coverage">
