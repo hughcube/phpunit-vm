@@ -50,12 +50,15 @@ trait HttpCallBridgeTrait
         $this->app['request'] = LumenRequest::createFromBase($symfonyRequest);
         $this->app->instance(Request::class, $this->app['request']);
 
-        $client = new Client(['timeout' => 30]);
+        $client = new Client();
         $response = $client->request($method, $uri, [
-            RequestOptions::FORM_PARAMS => $parameters,
+            RequestOptions::FORM_PARAMS => ((empty($parameters) && !empty($content)) ? null : $parameters),
             RequestOptions::COOKIES => $cookies,
             RequestOptions::BODY => $content,
             RequestOptions::HEADERS => $this->transformServerToHeadersVars($server),
+            RequestOptions::DEBUG => isset($this->httpProxy) && $this->httpDebug,
+            RequestOptions::PROXY => isset($this->httpProxy) ? $this->httpProxy : null,
+            RequestOptions::TIMEOUT => isset($this->httpTimeout) ? $this->httpTimeout : null,
         ]);
         return $this->response = TestResponse::fromBaseResponse(
             $this->app->prepareResponse($response)
@@ -70,17 +73,18 @@ trait HttpCallBridgeTrait
      */
     protected function transformServerToHeadersVars(array $server)
     {
-        $prefix = 'HTTP_';
+        $prefix = 'Http-';
 
         $headers = [];
         foreach ($server as $name => $value) {
-            $name = strtr(strtolower($name), '_', '-');
+            $name = ucwords(str_replace(['-', '_'], ' ', strtolower($name)));
+            $name = str_replace([' '], '-', $name);
 
-            if (!Str::startsWith($name, $prefix)) {
+            if (Str::startsWith($name, $prefix)) {
                 $name = substr($name, strlen($prefix));
             }
 
-            $headers[$name] = $value;
+            $headers[$name] = 'Content-Length' === $name ? 0 : $value;
         }
 
         return $headers;
