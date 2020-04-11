@@ -14,6 +14,5 @@ namespace HughCube\PHPUnit\VM;
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    use AssertExceptionTrait;
-    use CallProtectMethodTrait;
+    use ExtendTrait;
 }

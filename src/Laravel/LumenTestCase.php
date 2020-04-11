@@ -8,8 +8,7 @@
 
 namespace HughCube\PHPUnit\VM\Laravel;
 
-use HughCube\PHPUnit\VM\AssertExceptionTrait;
-use HughCube\PHPUnit\VM\CallProtectMethodTrait;
+use HughCube\PHPUnit\VM\ExtendTrait;
 use Laravel\Lumen\Testing\TestCase as BaseTestCase;
 
 /**
@@ -19,6 +18,5 @@ use Laravel\Lumen\Testing\TestCase as BaseTestCase;
  */
 abstract class LumenTestCase extends BaseTestCase
 {
-    use AssertExceptionTrait;
-    use CallProtectMethodTrait;
+    use ExtendTrait;
 }
